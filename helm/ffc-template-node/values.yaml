@@ -1,0 +1,42 @@
+environment: production
+environmentCode:
+name: ffc-template-node
+namespace: ffc-demo
+workstream: ffc-demo
+image: ffc-template-node
+
+labels:
+  component: service
+
+appInsights:
+  key:
+
+containerConfigMap:
+  name: ffc-template-node-config-map
+
+containerSecret:
+  name: ffc-template-node-container-secret
+  type: Opaque
+
+deployment: {}
+
+container:
+  requestMemory: 100Mi
+  requestCpu: 100m
+  limitMemory: 100Mi
+  limitCpu: 100m
+  port: 3000
+
+livenessProbe:
+  path: /healthz
+  port: 3000
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  failureThreshold: 3
+
+readinessProbe:
+  path: /healthy
+  port: 3000
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  failureThreshold: 3

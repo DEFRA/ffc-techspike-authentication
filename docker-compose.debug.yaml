@@ -1,3 +1,3 @@
 services:
-  ffc-template-node:
+  ffc-techspike-authentication:
     command: npm run start:debug

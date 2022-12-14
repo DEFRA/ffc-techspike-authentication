@@ -1,9 +1,9 @@
 environment: production
 environmentCode:
-name: ffc-template-node
-namespace: ffc-demo
-workstream: ffc-demo
-image: ffc-template-node
+name: ffc-techspike-authentication
+namespace: ffc-techspike
+workstream: ffc-techspike
+image: ffc-techspike-authentication
 
 labels:
   component: service
@@ -12,10 +12,10 @@ appInsights:
   key:
 
 containerConfigMap:
-  name: ffc-template-node-config-map
+  name: ffc-techspike-authentication-config-map
 
 containerSecret:
-  name: ffc-template-node-container-secret
+  name: ffc-techspike-authentication-container-secret
   type: Opaque
 
 deployment: {}

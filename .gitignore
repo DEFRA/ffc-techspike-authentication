@@ -1,5 +1,28 @@
+# Test output
+html-reports
 test-output
+
+# npm stuff
+.npm/
 node_modules
+npm-debug.log
+
+# Misc
 helm/**/*.lock
 *.tgz
+.env
+*.log
+
+# Editor stuff
 .vscode
+dist/
+
+# Generated views
+layout.njk
+
+# OS stuff
+.DS_Store
+
+# Generated files
+localhost-cert.pem
+localhost-privkey.pem

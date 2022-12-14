@@ -1,10 +1,19 @@
 services:
-  ffc-template-node:
+  ffc-techspike-authentication:
     build:
       context: .
       target: production
-    image: ffc-template-node
-    container_name: ffc-template-node
+    image: ffc-techspike-authentication
+    container_name: ffc-techspike-authentication
     environment:
-      APPINSIGHTS_CLOUDROLE: ffc-template-node-local
+      APPINSIGHTS_CLOUDROLE: ffc-techspike-authentication-local
       APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY}
+      COOKIE_PASSWORD: cookiecookiecookiecookiecookiecookie
+      DEFRAID_CLIENT_ID: ${DEFRAID_CLIENT_ID}
+      DEFRAID_CLIENT_SECRET: ${DEFRAID_CLIENT_SECRET}
+      DEFRAID_KNOWN_AUTHORITIES: ${DEFRAID_KNOWN_AUTHORITIES}
+      DEFRAID_REDIRECT_URL: ${DEFRAID_REDIRECT_URL}
+      DEFRAID_VALIDATE_AUTHORITY: ${DEFRAID_VALIDATE_AUTHORITY}
+      DEFRAID_TENANT_NAME: ${DEFRAID_TENANT_NAME}
+      DEFRAID_SERVICE_ID: ${DEFRAID_SERVICE_ID}
+      DEFRAID_AUTHORITY_METADATA: ${DEFRAID_AUTHORITY_METADATA}

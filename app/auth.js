@@ -43,6 +43,7 @@ const getAuthenticationUrl = async () => {
 const authenticate = async (redirectCode, cookieAuth) => {
   tokenRequest.code = redirectCode
   tokenRequest.scopes = ['openid']
+  tokenRequest.grantType = 'authorization_code'
 
   console.log('Fetching token', tokenRequest.code)
   const token = await confidentialClientApplication.acquireTokenByCode(tokenRequest)

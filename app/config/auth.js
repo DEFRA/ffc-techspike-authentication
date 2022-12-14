@@ -9,8 +9,7 @@ const schema = Joi.object({
     knownAuthorities: Joi.array().items(Joi.string()).allow(''),
     redirectUrl: Joi.string().default('https://localhost:3000/apply/signin-oidc'),
     validateAuthority: Joi.boolean().default(false),
-    authorityMetadata: Joi.string().allow(''),
-    grantType: Joi.string().default('authorization_code')
+    authorityMetadata: Joi.string().allow('')
   }),
   cookie: Joi.object({
     password: Joi.string().required(),
@@ -28,8 +27,7 @@ const config = {
     knownAuthorities: [process.env.DEFRAID_KNOWN_AUTHORITIES],
     redirectUrl: process.env.DEFRAID_REDIRECT_URL.length > 0 ? process.env.DEFRAID_REDIRECT_URL : 'https://localhost:3000/apply/signin-oidc',
     validateAuthority: process.env.DEFRAID_VALIDATE_AUTHORITY,
-    authorityMetadata: process.env.DEFRAID_AUTHORITY_METADATA,
-    grantType: 'authorization_code'
+    authorityMetadata: process.env.DEFRAID_AUTHORITY_METADATA
   },
   cookie: {
     password: process.env.COOKIE_PASSWORD,

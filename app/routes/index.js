@@ -5,9 +5,9 @@ module.exports = {
   path: '/',
   options: {
     auth: false,
-    handler: async (_, h) => {
+    handler: async (request, h) => {
       try {
-        const authUrl = await auth.getAuthenticationUrl()
+        const authUrl = await auth.getAuthenticationUrl(request)
         return h.redirect(authUrl)
       } catch (err) {
         console.log('Error authenticating', err)

@@ -5,9 +5,6 @@ const { pkcecodes } = require('./session/keys')
 
 const confidentialClientConfig = {
   auth: config.defraId,
-  extraQueryParameters: {
-    prompt: 'login'
-  },
   system: {
     loggerOptions: {
       loggerCallback (loglevel, message, containsPii) {
@@ -47,8 +44,11 @@ const getAuthenticationUrl = async (request) => {
   authCodeRequest.prompt = 'login'
   authCodeRequest.codeChallenge = challenge
   authCodeRequest.codeChallengeMethod = 'S256'
+  authCodeRequest.nonce = '12345'
 
   tokenRequest.authority = `${confidentialClientConfig.auth.authority}/oauth2/v2.0/token`
+
+  console.log('Auth code request', authCodeRequest)
 
   let authUrl = await confidentialClientApplication.getAuthCodeUrl(authCodeRequest)
   authUrl = `${authUrl}&p=b2c_1a_signupsigninsfi&serviceId=${config.serviceId}`
@@ -67,6 +67,8 @@ const authenticate = async (request) => {
   tokenRequest.grantType = 'authorization_code'
   tokenRequest.codeVerifier = verifier
   tokenRequest.clientInfo = clientInfo
+
+  console.log('Token request', tokenRequest)
 
   const token = await confidentialClientApplication.acquireTokenByCode(tokenRequest)
 

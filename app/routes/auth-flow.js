@@ -2,13 +2,13 @@ const auth = require('../auth')
 
 module.exports = {
   method: 'GET',
-  path: '/apply/signin-oidc',
+  path: '/auth-flow',
   options: {
-    auth: { mode: 'try' },
+    auth: false,
     handler: async (request, h) => {
       try {
-        await auth.authenticate(request)
-        return h.view('index')
+        const authUrl = await auth.getAuthenticationUrl(request)
+        return h.redirect(authUrl)
       } catch (err) {
         console.log('Error authenticating', err)
       }

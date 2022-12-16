@@ -37,11 +37,6 @@ Compose in development and Kubernetes in production.
 
 - A Helm chart is provided for production deployments to Kubernetes.
 
-## Routes
-
-- /implicit-flow
-- /auth-flow
-
 ### Build container image
 
 Container images are built using Docker Compose, with the same images used to
@@ -75,6 +70,11 @@ or use the start script
 ```sh
 ./scripts/start
 ```
+
+### Routes
+
+- `/implicit-flow`
+- `/auth-flow`
 
 ## Test structure
 

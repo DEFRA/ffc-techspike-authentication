@@ -1,18 +1,17 @@
-const auth = require('../msal-auth')
+const manualAuth = require('../manual-auth')
 
 module.exports = {
   method: 'GET',
-  path: '/auth-flow',
+  path: '/manual-auth-flow',
   options: {
     auth: false,
     handler: async (request, h) => {
       try {
-        const authUrl = await auth.getAuthenticationUrl(request)
+        const authUrl = manualAuth.getAuthenticationUrl()
         return h.redirect(authUrl)
       } catch (err) {
         console.log('Error authenticating', err)
       }
-      return h.view('500').code(500)
     }
   }
 }

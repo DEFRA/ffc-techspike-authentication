@@ -2,6 +2,7 @@ const routes = [].concat(
   require('../routes/assets'),
   require('../routes/index'),
   require('../routes/auth-flow'),
+  require('../routes/manual-auth-flow'),
   require('../routes/implicit-flow'),
   require('../routes/healthy'),
   require('../routes/healthz'),

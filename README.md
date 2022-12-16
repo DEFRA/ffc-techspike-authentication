@@ -75,6 +75,7 @@ or use the start script
 
 - `/implicit-flow`
 - `/auth-flow`
+- `/manual-auth`
 
 ## Test structure
 

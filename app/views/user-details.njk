@@ -1,0 +1,10 @@
+{% extends './layouts/layout.njk' %}
+
+{% block pageTitle %}{{ serviceName }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">{{token.firstName}} {{token.lastName}}</h1>
+    <p class="govuk-body">{{token.email}}</p>
+{% endblock %}

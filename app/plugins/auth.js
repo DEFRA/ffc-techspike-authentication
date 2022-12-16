@@ -1,7 +1,7 @@
 
 const config = require('../config')
 const authCookie = require('@hapi/cookie')
-const auth = require('../auth')
+const auth = require('../msal-auth')
 
 module.exports = {
   plugin: {

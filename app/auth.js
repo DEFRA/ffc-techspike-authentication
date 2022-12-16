@@ -40,7 +40,7 @@ const getAuthenticationUrl = async (request) => {
   const { challenge } = await createCryptoProvider(request)
 
   authCodeRequest.authority = `${confidentialClientConfig.auth.authority}/oauth2/v2.0/authorize`
-  authCodeRequest.scopes = ['openid']
+  authCodeRequest.scopes = ['openid 83d2b160-74ce-4356-9709-3f8da7868e35']
   authCodeRequest.prompt = 'login'
   authCodeRequest.codeChallenge = challenge
   authCodeRequest.codeChallengeMethod = 'S256'
@@ -63,7 +63,7 @@ const authenticate = async (request) => {
   const verifier = session.getPkcecodes(request, pkcecodes.verifier)
 
   tokenRequest.code = redirectCode
-  tokenRequest.scopes = ['openid']
+  tokenRequest.scopes = ['openid 83d2b160-74ce-4356-9709-3f8da7868e35']
   tokenRequest.grantType = 'authorization_code'
   tokenRequest.codeVerifier = verifier
   tokenRequest.clientInfo = clientInfo

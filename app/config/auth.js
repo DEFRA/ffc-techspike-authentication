@@ -21,7 +21,7 @@ const schema = Joi.object({
 // Build config
 const config = {
   defraId: {
-    clientId: '6c94a064-2ede-4cef-9c26-5eb7018a2edc',
+    clientId: process.env.DEFRAID_CLIENT_ID,
     authority: `https://${process.env.DEFRAID_TENANT_NAME}.b2clogin.com/${process.env.DEFRAID_TENANT_NAME}.onmicrosoft.com`,
     clientSecret: process.env.DEFRAID_CLIENT_SECRET,
     knownAuthorities: [process.env.DEFRAID_KNOWN_AUTHORITIES],

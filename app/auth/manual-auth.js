@@ -5,8 +5,9 @@ const session = require('../session')
 const { tokens } = require('../session/keys')
 const { createCryptoProvider, getVerifier } = require('./crypto-provider')
 const parseRole = require('../lib/parse-role')
-const decodeJwt = require('../lib/decode-jwt')
+const decodeJwt = require('./decode-jwt')
 const { expiryToISODate } = require('./token-expiry')
+const validateJwt = require('./validate-jwt')
 
 const getAuthenticationUrl = (request, pkce = false) => {
   const authUrl = new URL(`${config.defraId.authority}/oauth2/v2.0/authorize`)
@@ -76,6 +77,7 @@ const getToken = async (request, data) => {
 const setCookieAuth = (request, accessToken) => {
   const cookieAuth = request.cookieAuth
   const parseAccessToken = decodeJwt(accessToken)
+
   const roles = parseRole(parseAccessToken.roles)
 
   cookieAuth.set({
@@ -92,12 +94,17 @@ const authenticate = async (request, refresh = false) => {
   session.setToken(request, tokens.tokenExpiry, tokenExpiry)
 
   const accessToken = response.data.access_token
-  session.setToken(request, tokens.accessToken, accessToken)
 
-  const idToken = response.data.id_token
-  session.setToken(request, tokens.idToken, idToken)
+  const isTokenValid = await validateJwt(accessToken)
 
-  setCookieAuth(request, accessToken)
+  if (isTokenValid) {
+    session.setToken(request, tokens.accessToken, accessToken)
+
+    const idToken = response.data.id_token
+    session.setToken(request, tokens.idToken, idToken)
+
+    setCookieAuth(request, accessToken)
+  }
 }
 
 module.exports = {

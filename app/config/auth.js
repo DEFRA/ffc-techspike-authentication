@@ -15,7 +15,8 @@ const schema = Joi.object({
     password: Joi.string().required(),
     ttl: Joi.number().default(60 * 60 * 1000)
   }),
-  serviceId: Joi.string().allow('')
+  serviceId: Joi.string().allow(''),
+  tenantName: Joi.string().allow('')
 })
 
 // Build config
@@ -33,7 +34,8 @@ const config = {
     password: process.env.COOKIE_PASSWORD,
     ttl: process.env.COOKIE_TTL
   },
-  serviceId: process.env.DEFRAID_SERVICE_ID
+  serviceId: process.env.DEFRAID_SERVICE_ID,
+  tenantName: process.env.DEFRAID_TENANT_NAME
 }
 
 // Validate config

@@ -35,6 +35,8 @@
     "form-data": "^4.0.0",
     "govuk-frontend": "4.0.1",
     "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwk-to-pem": "^2.0.5",
     "nunjucks": "^3.2.3",
     "oauth-pkce": "^0.0.6",
     "openid-client": "^4.2.0",

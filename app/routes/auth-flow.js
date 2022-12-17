@@ -1,4 +1,4 @@
-const auth = require('../msal-auth')
+const auth = require('../auth/msal-auth')
 
 module.exports = {
   method: 'GET',
@@ -12,7 +12,7 @@ module.exports = {
       } catch (err) {
         console.log('Error authenticating', err)
       }
-      return h.view('500').code(500)
+      return h.view('error-pages/500').code(500)
     }
   }
 }

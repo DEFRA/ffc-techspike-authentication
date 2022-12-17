@@ -1,6 +1,4 @@
-const manualAuth = require('../manual-auth')
-const session = require('../session')
-const { tokens } = require('../session/keys')
+const manualAuth = require('../auth/manual-auth')
 
 module.exports = {
   method: 'GET',
@@ -10,12 +8,11 @@ module.exports = {
     handler: async (request, h) => {
       try {
         await manualAuth.authenticate(request)
-        const token = session.getToken(request, tokens.idToken, true)
-        return h.view('user-details', { token })
+        return h.redirect('/user-details')
       } catch (err) {
         console.log('Error authenticating', err)
       }
-      return h.view('500').code(500)
+      return h.view('error-pages/500').code(500)
     }
   }
 }

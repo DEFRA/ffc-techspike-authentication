@@ -5,6 +5,7 @@ module.exports = {
   },
   tokens: {
     idToken: 'idToken',
-    accessToken: 'accessToken'
+    accessToken: 'accessToken',
+    tokenExpiry: 'tokenExpiry'
   }
 }

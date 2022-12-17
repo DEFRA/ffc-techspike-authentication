@@ -4,6 +4,7 @@ const routes = [].concat(
   require('../routes/auth-flow'),
   require('../routes/manual-auth-flow'),
   require('../routes/implicit-flow'),
+  require('../routes/user_details'),
   require('../routes/healthy'),
   require('../routes/healthz'),
   require('../routes/auth')

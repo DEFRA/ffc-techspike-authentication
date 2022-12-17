@@ -1,7 +1,7 @@
 
 const config = require('../config')
 const authCookie = require('@hapi/cookie')
-const auth = require('../msal-auth')
+const auth = require('../auth/manual-auth')
 
 module.exports = {
   plugin: {
@@ -26,7 +26,8 @@ module.exports = {
 
       server.ext('onPreAuth', async (request, h) => {
         if (request.auth.credentials) {
-          await auth.refresh(request.auth.credentials.account, request.cookieAuth)
+          console.log('refresh token')
+          await auth.authenticate(request, true)
         }
         return h.continue
       })

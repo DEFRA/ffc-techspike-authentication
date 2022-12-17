@@ -36,7 +36,9 @@
     "govuk-frontend": "4.0.1",
     "joi": "^17.6.0",
     "nunjucks": "^3.2.3",
+    "oauth-pkce": "^0.0.6",
     "openid-client": "^4.2.0",
+    "pkce-challenge": "^3.0.0",
     "request": "^2.88.2"
   },
   "devDependencies": {

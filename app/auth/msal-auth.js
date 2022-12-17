@@ -1,7 +1,6 @@
-const config = require('./config').authConfig
 const msal = require('@azure/msal-node')
-const session = require('./session')
-const { pkcecodes } = require('./session/keys')
+const config = require('../config').authConfig
+const { createCryptoProvider, getVerifier } = require('./crypto-provider')
 
 const confidentialClientConfig = {
   auth: config.defraId,
@@ -26,16 +25,6 @@ const tokenRequest = {
   redirectUri: confidentialClientConfig.auth.redirectUrl
 }
 
-const createCryptoProvider = async (request) => {
-  const cryptoProvider = new msal.CryptoProvider()
-  const { verifier, challenge } = await cryptoProvider.generatePkceCodes()
-
-  session.setPkcecodes(request, pkcecodes.verifier, verifier)
-  session.setPkcecodes(request, pkcecodes.challenge, challenge)
-
-  return { verifier, challenge }
-}
-
 const getAuthenticationUrl = async (request) => {
   const { challenge } = await createCryptoProvider(request)
 
@@ -48,8 +37,6 @@ const getAuthenticationUrl = async (request) => {
 
   tokenRequest.authority = `${confidentialClientConfig.auth.authority}/oauth2/v2.0/token`
 
-  console.log('Auth code request', authCodeRequest)
-
   let authUrl = await confidentialClientApplication.getAuthCodeUrl(authCodeRequest)
   authUrl = `${authUrl}&p=b2c_1a_signupsigninsfi&serviceId=${config.serviceId}`
 
@@ -60,15 +47,13 @@ const authenticate = async (request) => {
   const redirectCode = request.query.code
   const cookieAuth = request.cookieAuth
   const clientInfo = request.query.client_info
-  const verifier = session.getPkcecodes(request, pkcecodes.verifier)
+  const verifier = getVerifier(request)
 
   tokenRequest.code = redirectCode
   tokenRequest.scopes = ['openid']
   tokenRequest.grantType = 'authorization_code'
   tokenRequest.codeVerifier = verifier
   tokenRequest.clientInfo = clientInfo
-
-  console.log('Token request', tokenRequest)
 
   const token = await confidentialClientApplication.acquireTokenByCode(tokenRequest)
 

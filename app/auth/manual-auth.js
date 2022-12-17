@@ -90,15 +90,14 @@ const authenticate = async (request, refresh = false) => {
   const data = refresh ? buildRefreshFormData(request) : buildAuthFormData(request)
   const response = await getToken(request, data)
 
-  const tokenExpiry = expiryToISODate(response.data.expires_in)
-  session.setToken(request, tokens.tokenExpiry, tokenExpiry)
-
   const accessToken = response.data.access_token
-
   const isTokenValid = await validateJwt(accessToken)
 
   if (isTokenValid) {
     session.setToken(request, tokens.accessToken, accessToken)
+
+    const tokenExpiry = expiryToISODate(response.data.expires_in)
+    session.setToken(request, tokens.tokenExpiry, tokenExpiry)
 
     const idToken = response.data.id_token
     session.setToken(request, tokens.idToken, idToken)

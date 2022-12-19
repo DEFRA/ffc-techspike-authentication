@@ -1,5 +1,5 @@
-const config = require('../config').authConfig
 const axios = require('axios')
+const config = require('../config').authConfig
 const FormData = require('form-data')
 const session = require('../session')
 const { tokens } = require('../session/keys')
@@ -8,6 +8,7 @@ const parseRole = require('../lib/parse-role')
 const decodeJwt = require('./decode-jwt')
 const { expiryToISODate } = require('./token-expiry')
 const validateJwt = require('./validate-jwt')
+const { generateState, stateIsValid } = require('./state')
 
 const getAuthenticationUrl = (request, pkce = false) => {
   const authUrl = new URL(`${config.defraId.authority}/oauth2/v2.0/authorize`)
@@ -19,7 +20,7 @@ const getAuthenticationUrl = (request, pkce = false) => {
   authUrl.searchParams.append('response_type', 'code')
   authUrl.searchParams.append('prompt', 'login')
   authUrl.searchParams.append('serviceId', config.serviceId)
-  authUrl.searchParams.append('state', '123456789')
+  authUrl.searchParams.append('state', generateState(request))
 
   if (pkce) {
     const { challenge } = createCryptoProvider(request)
@@ -87,22 +88,25 @@ const setCookieAuth = (request, accessToken) => {
 }
 
 const authenticate = async (request, refresh = false) => {
-  const data = refresh ? buildRefreshFormData(request) : buildAuthFormData(request)
-  const response = await getToken(request, data)
+  if (stateIsValid(request)) {
+    const data = refresh ? buildRefreshFormData(request) : buildAuthFormData(request)
+    const response = await getToken(request, data)
+    const accessToken = response.data.access_token
+    const isTokenValid = await validateJwt(accessToken)
 
-  const accessToken = response.data.access_token
-  const isTokenValid = await validateJwt(accessToken)
+    if (isTokenValid) {
+      session.setToken(request, tokens.accessToken, accessToken)
 
-  if (isTokenValid) {
-    session.setToken(request, tokens.accessToken, accessToken)
+      const tokenExpiry = expiryToISODate(response.data.expires_in)
+      session.setToken(request, tokens.tokenExpiry, tokenExpiry)
 
-    const tokenExpiry = expiryToISODate(response.data.expires_in)
-    session.setToken(request, tokens.tokenExpiry, tokenExpiry)
+      const idToken = response.data.id_token
+      session.setToken(request, tokens.idToken, idToken)
 
-    const idToken = response.data.id_token
-    session.setToken(request, tokens.idToken, idToken)
-
-    setCookieAuth(request, accessToken)
+      setCookieAuth(request, accessToken)
+    }
+  } else {
+    console.log('State returned does not match orignial state.')
   }
 }
 

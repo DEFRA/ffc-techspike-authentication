@@ -41,7 +41,7 @@
     "oauth-pkce": "^0.0.6",
     "openid-client": "^4.2.0",
     "pkce-challenge": "^3.0.0",
-    "request": "^2.88.2"
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@hapi/catbox-memory": "^5.0.1",

@@ -19,7 +19,7 @@ module.exports = {
           isSameSite: 'Lax' // Needed for the post authentication redirect
         },
         keepAlive: true, // Resets the cookie ttl after each route
-        redirectTo: '/login'
+        redirectTo: '/manual-auth-flow'
       })
 
       server.auth.default('session-auth')

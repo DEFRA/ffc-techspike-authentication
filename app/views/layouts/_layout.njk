@@ -48,6 +48,12 @@
   </div>
 {% endblock %}
 
+{% block beforeContent %}
+  {% if auth.isAuthenticated %}
+    <a href="/logout" class="govuk-body govuk-link">Sign out</a>    
+  {% endif %}
+{% endblock %}
+
 {% block bodyStart %}
 {% endblock %}
 

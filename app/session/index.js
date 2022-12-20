@@ -17,6 +17,7 @@ const get = (request, entryKey, key) => {
 
 const clear = (request) => {
   request.yar.clear(entries.pkcecodes)
+  request.yar.clear(entries.tokens)
 }
 
 const setToken = (request, key, value) => {

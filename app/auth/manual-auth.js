@@ -61,10 +61,19 @@ const buildRefreshFormData = (request) => {
   return data
 }
 
-const getToken = async (request, data) => {
+const buildSignoutFormData = (request) => {
+  const signoutToken = session.getToken(request, tokens.idToken)
+  const data = new FormData()
+  data.append('post_logout_redirect_uri', 'https://localhost:3000')
+  data.append('id_token_hint', signoutToken)
+
+  return data
+}
+
+const getToken = async (request, data, url = config.defraId.authority + '/b2c_1a_signupsigninsfi/oauth2/v2.0/token') => {
   const options = {
     method: 'post',
-    url: config.defraId.authority + '/b2c_1a_signupsigninsfi/oauth2/v2.0/token',
+    url,
     port: 443,
     headers: {
       ...data.getHeaders()
@@ -110,7 +119,20 @@ const authenticate = async (request, refresh = false) => {
   }
 }
 
+const signout = async (request) => {
+  // const data = buildSignoutFormData(request)
+  // const signoutEndpoint = 'https://condev5.azure.defra.cloud/idphub/b2c/b2c_1a_signupsignin/signout'
+  // await getToken(request, data, signoutEndpoint)
+
+  const cookieAuth = request.cookieAuth
+  cookieAuth.clear()
+  console.log('Cookie cleared')
+
+  session.clear(request)
+}
+
 module.exports = {
   getAuthenticationUrl,
-  authenticate
+  authenticate,
+  signout
 }

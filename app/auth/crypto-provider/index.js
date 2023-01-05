@@ -9,9 +9,8 @@ const createCryptoProvider = (request) => {
   const challenge = base64URLEncode(sha256(verifier))
 
   session.setPkcecodes(request, pkcecodes.verifier, verifier)
-  session.setPkcecodes(request, pkcecodes.challenge, challenge)
 
-  return { verifier, challenge }
+  return challenge
 }
 
 const getVerifier = (request) => {

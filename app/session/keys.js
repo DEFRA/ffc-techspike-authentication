@@ -1,7 +1,6 @@
 module.exports = {
   pkcecodes: {
-    verifier: 'verifier',
-    challenge: 'challenge'
+    verifier: 'verifier'
   },
   tokens: {
     idToken: 'idToken',

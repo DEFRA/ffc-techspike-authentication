@@ -24,7 +24,7 @@ const getAuthenticationUrl = (request, pkce = true) => {
   authUrl.searchParams.append('state', generateState(request))
 
   if (pkce) {
-    const { challenge } = createCryptoProvider(request)
+    const challenge = createCryptoProvider(request)
     authUrl.searchParams.append('code_challenge', challenge)
     authUrl.searchParams.append('code_challenge_method', 'S256')
   }

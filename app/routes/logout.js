@@ -8,8 +8,12 @@ module.exports = {
   path: '/logout',
   handler: async (request, h) => {
     await signout(request)
+
     const token = session.getToken(request, tokens.idToken)
-    const signoutUrl = `${config.defraId.signoutUrl}?post_logout_redirect_uri=$https://localhost:3000&id_token_hint=${token}`
+    const signoutUrl = new URL(config.defraId.signoutUrl)
+    signoutUrl.searchParams.append('post_logout_redirect_uri', config.defraId.signoutRedirectUrl)
+    signoutUrl.searchParams.append('id_token_hint', token)
+
     return h.redirect(signoutUrl)
   }
 }

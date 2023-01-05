@@ -113,17 +113,23 @@ const authenticate = async (request, refresh = false) => {
   return false
 }
 
+const getSignoutUrl = (request) => {
+  const token = session.getToken(request, tokens.idToken)
+  const signoutUrl = new URL(config.defraId.signoutUrl)
+  signoutUrl.searchParams.append('post_logout_redirect_uri', config.defraId.signoutRedirectUrl)
+  signoutUrl.searchParams.append('id_token_hint', token)
+
+  return signoutUrl
+}
+
 const signout = async (request) => {
-  // const data = buildSignoutFormData(request)
-  // const signoutEndpoint = config.defraId.signoutUrl
-
-  // await getToken(request, data, signoutEndpoint)
-
   const cookieAuth = request.cookieAuth
   cookieAuth.clear()
   console.log('Signed out')
 
   session.clear(request)
+
+  return getSignoutUrl(request)
 }
 
 module.exports = {

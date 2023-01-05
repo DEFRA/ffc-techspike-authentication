@@ -21,23 +21,16 @@ overridden by build and release pipelines.
 
 | Name                                            | Description                                                                                      |
 | ----                                            | -----------                                                                                      |
-|DEFRAID_CLIENT_ID|he application ID assigned to your app during the
-registration with DEFRA Customer Identity.
-|
-|DEFRAID_CLIENT_SECRET||
-|DEFRAID_KNOWN_AUTHORITIES||
-|DEFRAID_VALIDATE_AUTHORITY||
-|DEFRAID_TENANT_NAME||
-|DEFRAID_SERVICE_ID|The unique identifier for your service provided as part
-of being on-boarded to DEFRA Customer Identity.
-|
-|DEFRAID_AUTHORITY_METADATA||
-|DEFRAID_REDIRECT_URL|The redirect_uri parameter of the application, where
-authentication responses can be sent and received by
-the application|
-|DEFRAID_SCOPE||
-|DEFRAID_SIGNOUT_REDIRECT_URL||
-|DEFRAID_SIGNOUT_URL||
+|DEFRAID_CLIENT_ID|The application ID assigned to your app during the registration with DEFRA Customer Identity.
+|DEFRAID_CLIENT_SECRET| Secret supplied by DEFRA Customer Identity
+|DEFRAID_KNOWN_AUTHORITIES| The know authority supplied by DEFRA Customer Identity
+|DEFRAID_VALIDATE_AUTHORITY| The name of the issuing autority supplied by DEFRA Customer Identity
+|DEFRAID_TENANT_NAME| The name of the Azure tenent for DEFRA Customer Identity
+|DEFRAID_SERVICE_ID|The unique identifier for your service provided as part of being on-boarded to DEFRA Customer Identity.
+|DEFRAID_REDIRECT_URL|The redirect_uri parameter of the application, where authentication responses can be sent and received by the application
+|DEFRAID_SCOPE| openid `{client_id}` offline-access
+|DEFRAID_SIGNOUT_REDIRECT_URL| A URL to redirect the user after a successful sign-out.
+|DEFRAID_SIGNOUT_URL| The end_session_endpoint found within the OpenID connect configuration document
 
 ## Running the application
 

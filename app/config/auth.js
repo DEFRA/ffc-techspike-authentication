@@ -9,7 +9,6 @@ const schema = Joi.object({
     knownAuthorities: Joi.array().items(Joi.string()).allow(''),
     redirectUrl: Joi.string().default('https://localhost:3000/apply/signin-oidc'),
     validateAuthority: Joi.boolean().default(false),
-    authorityMetadata: Joi.string().allow(''),
     scope: Joi.string().allow(''),
     signoutRedirectUrl: Joi.string().default('https://localhost:3000'),
     signoutUrl: Joi.string()
@@ -33,7 +32,6 @@ const config = {
     signoutUrl: process.env.DEFRAID_SIGNOUT_URL,
     signoutRedirectUrl: process.env.DEFRAID_SIGNOUT_REDIRECT_URL.length > 0 ? process.env.DEFRAID_SIGNOUT_REDIRECT_URL : 'https://localhost:3000',
     validateAuthority: process.env.DEFRAID_VALIDATE_AUTHORITY,
-    authorityMetadata: process.env.DEFRAID_AUTHORITY_METADATA,
     scope: process.env.DEFRAID_SCOPE.length > 0 ? process.env.DEFRAID_SCOPE_URL : `openid ${process.env.DEFRAID_CLIENT_ID} offline_access`
   },
   cookie: {

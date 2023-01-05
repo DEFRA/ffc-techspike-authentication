@@ -8,7 +8,7 @@ const decodeJwt = require('./decode-jwt')
 const { expiryToISODate } = require('./token-expiry')
 const validateJwt = require('./validate-jwt')
 const { generateState, stateIsValid } = require('./state')
-const { buildRefreshFormData, buildAuthFormData } = require('./parameters')
+const { buildRefreshFormData, buildAuthFormData, buildSignoutFormData } = require('./parameters')
 
 const getAuthenticationUrl = (request, pkce = true) => {
   const authUrl = new URL(`${config.defraId.authority}/oauth2/v2.0/authorize`)
@@ -52,9 +52,8 @@ const setCookieAuth = (request, accessToken) => {
   const roles = parseRole(parseAccessToken.roles)
 
   cookieAuth.set({
-    id: parseAccessToken.email,
     scope: roles.roleNames,
-    account: parseAccessToken.email
+    account: { email: parseAccessToken.email }
   })
 }
 
@@ -99,9 +98,9 @@ const authenticate = async (request, refresh = false) => {
 }
 
 const signout = async (request) => {
-  // const data = buildSignoutFormData(request)
-  // const signoutEndpoint = config.defraId.signoutUrl
-  // await getToken(request, data, signoutEndpoint)
+  const data = buildSignoutFormData(request)
+  const signoutEndpoint = config.defraId.signoutUrl
+  await getToken(request, data, signoutEndpoint)
 
   const cookieAuth = request.cookieAuth
   cookieAuth.clear()

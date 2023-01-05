@@ -8,13 +8,14 @@ const decodeJwt = require('./decode-jwt')
 const { expiryToISODate } = require('./token-expiry')
 const validateJwt = require('./validate-jwt')
 const { generateState, stateIsValid } = require('./state')
+const { generateNonce, nonceIsValid } = require('./nonce')
 const { buildRefreshFormData, buildAuthFormData, buildSignoutFormData } = require('./parameters')
 
 const getAuthenticationUrl = (request, pkce = true) => {
   const authUrl = new URL(`${config.defraId.authority}/oauth2/v2.0/authorize`)
   authUrl.searchParams.append('p', 'B2C_1A_SIGNUPSIGNINSFI')
   authUrl.searchParams.append('client_id', config.defraId.clientId)
-  authUrl.searchParams.append('nonce', 'defaultNonce')
+  authUrl.searchParams.append('nonce', generateNonce(request))
   authUrl.searchParams.append('redirect_uri', config.defraId.redirectUrl)
   authUrl.searchParams.append('scope', config.defraId.scope)
   authUrl.searchParams.append('response_type', 'code')
@@ -58,23 +59,37 @@ const setCookieAuth = (request, accessToken) => {
 }
 
 const setAuthTokens = async (request, response) => {
-  const accessToken = response.data.access_token
-  const isTokenValid = await validateJwt(accessToken)
+  try {
+    const accessToken = response.data.access_token
+    const isTokenValid = await validateJwt(accessToken)
 
-  if (isTokenValid) {
-    session.setToken(request, tokens.accessToken, accessToken)
+    if (isTokenValid) {
+      const idToken = response.data.id_token
 
-    const tokenExpiry = expiryToISODate(response.data.expires_in)
-    session.setToken(request, tokens.tokenExpiry, tokenExpiry)
+      if (!nonceIsValid(request, idToken)) {
+        console.log('Nonce returned does not match original nonce.')
+        return false
+      }
 
-    const idToken = response.data.id_token
-    session.setToken(request, tokens.idToken, idToken)
+      session.clear(request)
+      session.setToken(request, tokens.accessToken, accessToken)
 
-    const refreshToken = response.data.refresh_token
-    session.setToken(request, tokens.refreshToken, refreshToken)
-    setCookieAuth(request, accessToken)
+      const tokenExpiry = expiryToISODate(response.data.expires_in)
+      session.setToken(request, tokens.tokenExpiry, tokenExpiry)
 
-    return true
+      session.setToken(request, tokens.idToken, idToken)
+
+      const refreshToken = response.data.refresh_token
+      session.setToken(request, tokens.refreshToken, refreshToken)
+      setCookieAuth(request, accessToken)
+
+      return true
+    }
+  } catch (err) {
+    console.log('Error validating token: ', err)
+    if (session.getToken(request, tokens.idToken)) {
+      signout(request)
+    }
   }
 
   return false
@@ -89,6 +104,7 @@ const authenticate = async (request, refresh = false) => {
 
     const data = refresh ? buildRefreshFormData(request) : buildAuthFormData(request)
     const response = await getToken(request, data)
+
     return setAuthTokens(request, response)
   } else {
     console.log('Error returned from authentication request: ', request.query.error_description)
@@ -100,6 +116,7 @@ const authenticate = async (request, refresh = false) => {
 const signout = async (request) => {
   const data = buildSignoutFormData(request)
   const signoutEndpoint = config.defraId.signoutUrl
+
   await getToken(request, data, signoutEndpoint)
 
   const cookieAuth = request.cookieAuth

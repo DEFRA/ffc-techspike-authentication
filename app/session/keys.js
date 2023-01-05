@@ -8,6 +8,7 @@ module.exports = {
     accessToken: 'accessToken',
     tokenExpiry: 'tokenExpiry',
     refreshToken: 'refreshToken',
-    state: 'state'
+    state: 'state',
+    nonce: 'nonce'
   }
 }

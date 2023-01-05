@@ -39,6 +39,7 @@ const buildRefreshFormData = (request) => {
 
 const buildSignoutFormData = (request) => {
   const signoutToken = session.getToken(request, tokens.idToken)
+
   const data = new FormData()
   data.append('post_logout_redirect_uri', 'https://localhost:3000')
   data.append('id_token_hint', signoutToken)

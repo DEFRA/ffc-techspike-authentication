@@ -10,6 +10,19 @@ const retrieveKey = async () => {
   return response.data.keys[0]
 }
 
+const verifyToken = async (token) => {
+  const jwk = await retrieveKey()
+  const publicKey = jwktopem(jwk)
+  const decoded = await jwt.verify(token, publicKey, { algorithms: ['RS256'], ignoreNotBefore: true })
+
+  if (!decoded) {
+    console.log('Token is invalid')
+    return false
+  }
+
+  return true
+}
+
 const validateJwt = async (token) => {
   const decodedToken = decodeToken(token)
 
@@ -23,16 +36,7 @@ const validateJwt = async (token) => {
     return false
   }
 
-  const jwk = await retrieveKey()
-  const publicKey = jwktopem(jwk)
-  const decoded = await jwt.verify(token, publicKey)
-
-  if (!decoded) {
-    console.log('Token is invalid')
-    return false
-  }
-
-  return true
+  return verifyToken(token)
 }
 
 module.exports = validateJwt

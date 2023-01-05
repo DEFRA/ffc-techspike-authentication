@@ -9,7 +9,7 @@ const { expiryToISODate } = require('./token-expiry')
 const validateJwt = require('./validate-jwt')
 const { generateState, stateIsValid } = require('./state')
 const { generateNonce, nonceIsValid } = require('./nonce')
-const { buildRefreshFormData, buildAuthFormData, buildSignoutFormData } = require('./parameters')
+const { buildRefreshFormData, buildAuthFormData } = require('./parameters')
 
 const getAuthenticationUrl = (request, pkce = true) => {
   const authUrl = new URL(`${config.defraId.authority}/oauth2/v2.0/authorize`)
@@ -114,10 +114,10 @@ const authenticate = async (request, refresh = false) => {
 }
 
 const signout = async (request) => {
-  const data = buildSignoutFormData(request)
-  const signoutEndpoint = config.defraId.signoutUrl
+  // const data = buildSignoutFormData(request)
+  // const signoutEndpoint = config.defraId.signoutUrl
 
-  await getToken(request, data, signoutEndpoint)
+  // await getToken(request, data, signoutEndpoint)
 
   const cookieAuth = request.cookieAuth
   cookieAuth.clear()

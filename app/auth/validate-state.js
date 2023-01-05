@@ -10,8 +10,10 @@ const generateState = (request) => {
 
 const stateIsValid = (request) => {
   const state = request.query.state
-  const savedState = session.getToken(request, tokens.state)
-  console.log(state, savedState)
+  if (!state) {
+    return false
+  }
+  const savedState = session?.getToken(request, tokens.state)
   return state === savedState
 }
 

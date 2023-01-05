@@ -7,7 +7,12 @@ module.exports = {
     auth: { mode: 'try' },
     handler: async (request, h) => {
       try {
-        await manualAuth.authenticate(request)
+        const authenticate = await manualAuth.authenticate(request)
+
+        if (!authenticate) {
+          return h.redirect('/')
+        }
+
         return h.redirect('/user-details')
       } catch (err) {
         console.log('Error authenticating', err)

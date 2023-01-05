@@ -7,6 +7,7 @@ module.exports = {
     idToken: 'idToken',
     accessToken: 'accessToken',
     tokenExpiry: 'tokenExpiry',
+    refreshToken: 'refreshToken',
     state: 'state'
   }
 }

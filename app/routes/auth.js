@@ -1,4 +1,4 @@
-const manualAuth = require('../auth/manual-auth')
+const auth = require('../auth')
 
 module.exports = {
   method: 'GET',
@@ -7,7 +7,7 @@ module.exports = {
     auth: { mode: 'try' },
     handler: async (request, h) => {
       try {
-        const authenticate = await manualAuth.authenticate(request)
+        const authenticate = await auth.authenticate(request)
 
         if (!authenticate) {
           return h.redirect('/')

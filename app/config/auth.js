@@ -3,13 +3,16 @@ const Joi = require('joi')
 // Define config schema
 const schema = Joi.object({
   defraId: Joi.object({
-    clientId: Joi.string().allow(''),
-    authority: Joi.string().allow(''),
-    clientSecret: Joi.string().allow(''),
+    clientId: Joi.string(),
+    authority: Joi.string(),
+    clientSecret: Joi.string(),
     knownAuthorities: Joi.array().items(Joi.string()).allow(''),
     redirectUrl: Joi.string().default('https://localhost:3000/apply/signin-oidc'),
     validateAuthority: Joi.boolean().default(false),
-    authorityMetadata: Joi.string().allow('')
+    authorityMetadata: Joi.string().allow(''),
+    scope: Joi.string().allow(''),
+    signoutRedirectUrl: Joi.string().default('https://localhost:3000'),
+    signoutUrl: Joi.string()
   }),
   cookie: Joi.object({
     password: Joi.string().required(),
@@ -27,8 +30,11 @@ const config = {
     clientSecret: process.env.DEFRAID_CLIENT_SECRET,
     knownAuthorities: [process.env.DEFRAID_KNOWN_AUTHORITIES],
     redirectUrl: process.env.DEFRAID_REDIRECT_URL.length > 0 ? process.env.DEFRAID_REDIRECT_URL : 'https://localhost:3000/apply/signin-oidc',
+    signoutUrl: process.env.DEFRAID_SIGNOUT_URL,
+    signoutRedirectUrl: process.env.DEFRAID_SIGNOUT_REDIRECT_URL.length > 0 ? process.env.DEFRAID_SIGNOUT_REDIRECT_URL : 'https://localhost:3000',
     validateAuthority: process.env.DEFRAID_VALIDATE_AUTHORITY,
-    authorityMetadata: process.env.DEFRAID_AUTHORITY_METADATA
+    authorityMetadata: process.env.DEFRAID_AUTHORITY_METADATA,
+    scope: process.env.DEFRAID_SCOPE.length > 0 ? process.env.DEFRAID_SCOPE_URL : `openid ${process.env.DEFRAID_CLIENT_ID} offline_access`
   },
   cookie: {
     password: process.env.COOKIE_PASSWORD,

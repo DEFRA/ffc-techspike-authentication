@@ -1,4 +1,4 @@
-const { signout } = require('../auth/manual-auth')
+const { signout } = require('../auth')
 
 module.exports = {
   method: 'GET',

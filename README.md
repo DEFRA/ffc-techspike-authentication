@@ -21,14 +21,23 @@ overridden by build and release pipelines.
 
 | Name                                            | Description                                                                                      |
 | ----                                            | -----------                                                                                      |
-|DEFRAID_CLIENT_ID||
+|DEFRAID_CLIENT_ID|he application ID assigned to your app during the
+registration with DEFRA Customer Identity.
+|
 |DEFRAID_CLIENT_SECRET||
 |DEFRAID_KNOWN_AUTHORITIES||
 |DEFRAID_VALIDATE_AUTHORITY||
 |DEFRAID_TENANT_NAME||
-|DEFRAID_SERVICE_ID||
+|DEFRAID_SERVICE_ID|The unique identifier for your service provided as part
+of being on-boarded to DEFRA Customer Identity.
+|
 |DEFRAID_AUTHORITY_METADATA||
-|DEFRAID_REDIRECT_URL||
+|DEFRAID_REDIRECT_URL|The redirect_uri parameter of the application, where
+authentication responses can be sent and received by
+the application|
+|DEFRAID_SCOPE||
+|DEFRAID_SIGNOUT_REDIRECT_URL||
+|DEFRAID_SIGNOUT_URL||
 
 ## Running the application
 

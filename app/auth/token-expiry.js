@@ -12,7 +12,7 @@ const hasExpired = (request) => {
   if (tokenExpiry) {
     const expiryTime = new Date(session.getToken(request, tokens.tokenExpiry)).getTime()
     const currentTime = new Date().getTime()
-    return expiryTime > currentTime
+    return expiryTime < currentTime
   }
 
   return true

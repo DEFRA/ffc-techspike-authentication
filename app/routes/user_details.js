@@ -1,6 +1,6 @@
 const session = require('../session')
 const { tokens } = require('../session/keys')
-const { ownerSoleTrader } = require('../auth/permissions')
+const { ownerSoleTrader } = require('../lib/roles')
 
 module.exports = {
   method: 'GET',

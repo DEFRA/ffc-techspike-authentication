@@ -54,7 +54,7 @@ const setCookieAuth = (request, accessToken) => {
 
   cookieAuth.set({
     scope: roles.roleNames,
-    account: { email: parseAccessToken.email }
+    account: { email: parseAccessToken.email, name: `${parseAccessToken.firstName} ${parseAccessToken.lastName}` }
   })
 }
 

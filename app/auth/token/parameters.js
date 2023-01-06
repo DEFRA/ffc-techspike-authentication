@@ -1,8 +1,8 @@
 const FormData = require('form-data')
-const config = require('../config').authConfig
-const { getVerifier } = require('./crypto-provider')
-const session = require('../session')
-const { tokens } = require('../session/keys')
+const config = require('../../config').authConfig
+const { getVerifier } = require('../crypto-provider')
+const session = require('../../session')
+const { tokens } = require('../../session/keys')
 
 const buildFormData = () => {
   const data = new FormData()

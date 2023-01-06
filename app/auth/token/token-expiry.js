@@ -1,5 +1,5 @@
-const session = require('../session')
-const { tokens } = require('../session/keys')
+const session = require('../../session')
+const { tokens } = require('../../session/keys')
 
 const expiryToISODate = (expiresIn) => {
   const now = new Date()

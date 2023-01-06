@@ -2,8 +2,8 @@ const axios = require('axios')
 const jwktopem = require('jwk-to-pem')
 const jwt = require('jsonwebtoken')
 const decodeToken = require('./decode-jwt')
-const trustedIssuers = require('./trusted-issuers')
-const config = require('../config').authConfig
+const trustedIssuers = require('../verification/trusted-issuers')
+const config = require('../../config').authConfig
 
 const retrieveKey = async () => {
   const response = await axios.get(`${config.defraId.authority}/discovery/v2.0/keys?p=b2c_1a_signupsignin`)

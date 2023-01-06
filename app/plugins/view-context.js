@@ -1,5 +1,5 @@
-const getUser = require('../auth/get-user')
-const mapAuth = require('../auth/map-auth')
+const getUser = require('../auth/lib/get-user')
+const mapAuth = require('../auth/lib/map-auth')
 const { getSignoutUrl } = require('../auth')
 
 module.exports = {

@@ -1,6 +1,6 @@
 const { v4: uuidv4 } = require('uuid')
-const session = require('../session')
-const { tokens } = require('../session/keys')
+const session = require('../../session')
+const { tokens } = require('../../session/keys')
 
 const generateState = (request) => {
   const state = uuidv4()

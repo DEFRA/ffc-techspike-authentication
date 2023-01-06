@@ -1,7 +1,7 @@
 const { v4: uuidv4 } = require('uuid')
-const session = require('../session')
-const { tokens } = require('../session/keys')
-const decodeJwt = require('../auth/decode-jwt')
+const session = require('../../session')
+const { tokens } = require('../../session/keys')
+const decodeJwt = require('../token/decode-jwt')
 
 const generateNonce = (request) => {
   const nonce = uuidv4()

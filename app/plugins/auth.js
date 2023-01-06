@@ -1,7 +1,7 @@
 
 const config = require('../config')
 const authCookie = require('@hapi/cookie')
-const { hasExpired } = require('../auth/token-expiry')
+const { hasExpired } = require('../auth/token/token-expiry')
 const tokenSession = require('../session')
 const { tokens } = require('../session/keys')
 const auth = require('../auth')
@@ -24,7 +24,6 @@ module.exports = {
         redirectTo: '/signin',
         validateFunc: async (request, session) => {
           let valid = true
-          console.log('Validating session')
           const token = tokenSession.getToken(request, tokens.refreshToken)
 
           if (!token) {

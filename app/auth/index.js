@@ -128,12 +128,11 @@ const signout = async (request) => {
   console.log('Signed out')
 
   session.clear(request)
-
-  return getSignoutUrl(request)
 }
 
 module.exports = {
   getAuthenticationUrl,
   authenticate,
+  getSignoutUrl,
   signout
 }

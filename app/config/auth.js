@@ -30,7 +30,7 @@ const config = {
     knownAuthorities: [process.env.DEFRAID_KNOWN_AUTHORITIES],
     redirectUrl: process.env.DEFRAID_REDIRECT_URL.length > 0 ? process.env.DEFRAID_REDIRECT_URL : 'https://localhost:3000/apply/signin-oidc',
     signoutUrl: process.env.DEFRAID_SIGNOUT_URL,
-    signoutRedirectUrl: process.env.DEFRAID_SIGNOUT_REDIRECT_URL.length > 0 ? process.env.DEFRAID_SIGNOUT_REDIRECT_URL : 'https://localhost:3000',
+    signoutRedirectUrl: process.env.DEFRAID_SIGNOUT_REDIRECT_URL.length > 0 ? process.env.DEFRAID_SIGNOUT_REDIRECT_URL : 'https://localhost:3000/apply/signout',
     validateAuthority: process.env.DEFRAID_VALIDATE_AUTHORITY,
     scope: process.env.DEFRAID_SCOPE.length > 0 ? process.env.DEFRAID_SCOPE_URL : `openid ${process.env.DEFRAID_CLIENT_ID} offline_access`
   },

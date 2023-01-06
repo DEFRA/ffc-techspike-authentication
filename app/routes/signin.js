@@ -2,7 +2,7 @@ const auth = require('../auth')
 
 module.exports = {
   method: 'GET',
-  path: '/login',
+  path: '/signin',
   options: {
     auth: false,
     handler: async (request, h) => {

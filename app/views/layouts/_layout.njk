@@ -50,7 +50,7 @@
 
 {% block beforeContent %}
   {% if auth.isAuthenticated %}
-    <p class="govuk-body">Welcome {{user.name}} | <a href="/logout" class="govuk-body govuk-link">Sign out</a></p>
+    <p class="govuk-body">Welcome {{user.name}} | <a href="{{signout}}" class="govuk-body govuk-link">Sign out</a></p>
   {% endif %}
 {% endblock %}
 

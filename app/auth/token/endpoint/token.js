@@ -1,5 +1,5 @@
 const axios = require('axios')
-const config = require('../../config').authConfig
+const config = require('../../../config').authConfig
 const { buildRefreshFormData, buildAuthFormData } = require('./parameters')
 
 const retrieveToken = async (request, refresh) => {

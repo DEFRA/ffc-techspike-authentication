@@ -1,7 +1,6 @@
 const session = require('../session')
 const { tokens } = require('../session/keys')
-const { stateIsValid } = require('./verification/state')
-const { nonceIsValid } = require('./verification/nonce')
+const { nonceIsValid, stateIsValid } = require('./verification')
 const parseRole = require('./lib/parse-role')
 const { retrieveToken, validateJwt, expiryToISODate, decodeJwt } = require('./token')
 
@@ -30,7 +29,6 @@ const setAuthTokens = async (request, response) => {
         return false
       }
 
-      session.clear(request)
       session.setToken(request, tokens.accessToken, accessToken)
 
       const tokenExpiry = expiryToISODate(response.data.expires_in)

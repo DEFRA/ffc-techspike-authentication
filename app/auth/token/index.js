@@ -1,7 +1,7 @@
-const decodeJwt = require('./decode-jwt')
-const retrieveToken = require('./token')
+const decodeJwt = require('./jwt/decode-jwt')
+const retrieveToken = require('./endpoint/token')
 const { expiryToISODate, hasExpired } = require('./token-expiry')
-const validateJwt = require('./validate-jwt')
+const validateJwt = require('./jwt/validate-jwt')
 
 module.exports = {
   decodeJwt,

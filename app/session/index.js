@@ -1,4 +1,4 @@
-const decodeJwt = require('../auth/token/decode-jwt')
+const decodeJwt = require('../auth/token/jwt/decode-jwt')
 
 const entries = {
   pkcecodes: 'pkcecodes',

@@ -1,7 +1,6 @@
 const config = require('../config').authConfig
 const { createCryptoProvider } = require('./crypto-provider')
-const { generateState } = require('./verification/state')
-const { generateNonce } = require('./verification/nonce')
+const { generateNonce, generateState } = require('./verification')
 
 const getAuthenticationUrl = (request, pkce = true) => {
   const authUrl = new URL(`${config.defraId.authority}/oauth2/v2.0/authorize`)

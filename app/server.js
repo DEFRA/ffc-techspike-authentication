@@ -18,7 +18,7 @@ const serverOptions = {
 const listener = Http2.createSecureServer(serverOptions)
 
 async function createServer () {
-  const server = Hapi.server({
+  const serverOptions = {
     cache: [{
       provider: {
         constructor: catbox,
@@ -38,7 +38,8 @@ async function createServer () {
     router: {
       stripTrailingSlash: true
     }
-  })
+  }
+  const server = Hapi.server(serverOptions)
 
   await server.register(require('./plugins/auth'))
   await server.register(require('@hapi/inert'))

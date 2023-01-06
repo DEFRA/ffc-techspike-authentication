@@ -1,5 +1,5 @@
 const { getSignoutUrl, signout } = require('./signout')
-const getAuthenticationUrl = require('./authentication-url')
+const getAuthenticationUrl = require('./authorize')
 const authenticate = require('./authenticate')
 
 module.exports = {

@@ -1,6 +1,10 @@
 # FFC Tech Spike Autentication
 
-> Test integration with Defra Id. 
+Test integration with Defra Id. 
+
+ > For more information please browse the Technical Onboarding Guide for Core Service. This is supplied by DEFRA Customer Identity
+
+For additional information on openid-connect: https://learn.microsoft.com/en-us/azure/active-directory-b2c/openid-connect
 
 ## Prerequisites
 
@@ -32,14 +36,17 @@ overridden by build and release pipelines.
 |DEFRAID_SIGNOUT_REDIRECT_URL| A URL to redirect the user after a successful sign-out. This needs to be supplied to DEFRA Customer Identity.
 |DEFRAID_SIGNOUT_URL| The end_session_endpoint found within the OpenID connect configuration document
 
- > For more information please browse the Technical Onboarding Guide for Core Service. This is supplied by DEFRA Customer Identity
-
-## Generate a self-signed certificate to run application on https
+## Generate a self-signed certificate to run the  application on https
 
 ```
 openssl req -x509 -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost' \
   -keyout localhost-privkey.pem -out localhost-cert.pem
 ```
+
+The two generated files are placed within the `app` folder: 
+
+- localhost-cert.pem
+- localhost-privkey.pem
 
 ## Running the application
 

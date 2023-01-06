@@ -14,3 +14,15 @@ services:
       - ./test-output:/home/node/test-output
       - ./jest.config.js:/home/node/jest.config.js
       - ./package.json:/home/node/package.json
+    environment:
+      DEFRAID_CLIENT_ID: test_client_id
+      DEFRAID_CLIENT_SECRET: test_client_secret
+      DEFRAID_KNOWN_AUTHORITIES: test_known_authorities
+      DEFRAID_SCOPE: test_scope
+      DEFRAID_REDIRECT_URL: test_redirect_url
+      DEFRAID_SIGNOUT_URL: test_signout_url
+      DEFRAID_SIGNOUT_REDIRECT_URL:  test_signout_redirect_url
+      DEFRAID_VALIDATE_AUTHORITY:  test_validate_authority
+      DEFRAID_TENANT_NAME: test_tenant_name
+      DEFRAID_SERVICE_ID: test_service_id
+

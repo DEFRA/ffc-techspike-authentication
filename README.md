@@ -32,6 +32,8 @@ overridden by build and release pipelines.
 |DEFRAID_SIGNOUT_REDIRECT_URL| A URL to redirect the user after a successful sign-out. This needs to be supplied to DEFRA Customer Identity.
 |DEFRAID_SIGNOUT_URL| The end_session_endpoint found within the OpenID connect configuration document
 
+ > For more information please browse the Technical Onboarding Guide for Core Service. This is supplied by DEFRA Customer Identity
+
 ## Generate a self-signed certificate to run application on https
 
 ```

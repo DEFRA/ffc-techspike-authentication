@@ -21,7 +21,7 @@ module.exports = {
           isSameSite: 'Lax' // Needed for the post authentication redirect
         },
         keepAlive: true, // Resets the cookie ttl after each route
-        redirectTo: '/login',
+        redirectTo: '/signin',
         validateFunc: async (request, session) => {
           let valid = true
           console.log('Validating session')

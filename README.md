@@ -27,9 +27,9 @@ overridden by build and release pipelines.
 |DEFRAID_VALIDATE_AUTHORITY| The name of the issuing autority supplied by DEFRA Customer Identity
 |DEFRAID_TENANT_NAME| The name of the Azure tenent for DEFRA Customer Identity
 |DEFRAID_SERVICE_ID|The unique identifier for your service provided as part of being on-boarded to DEFRA Customer Identity.
-|DEFRAID_REDIRECT_URL|The redirect_uri parameter of the application, where authentication responses can be sent and received by the application
+|DEFRAID_REDIRECT_URL|The redirect_uri parameter of the application, where authentication responses can be sent and received by the application. This needs to be supplied to DEFRA Customer Identity.
 |DEFRAID_SCOPE| openid `{client_id}` offline-access
-|DEFRAID_SIGNOUT_REDIRECT_URL| A URL to redirect the user after a successful sign-out.
+|DEFRAID_SIGNOUT_REDIRECT_URL| A URL to redirect the user after a successful sign-out. This needs to be supplied to DEFRA Customer Identity.
 |DEFRAID_SIGNOUT_URL| The end_session_endpoint found within the OpenID connect configuration document
 
 ## Running the application
@@ -72,12 +72,6 @@ or use the start script
 ```sh
 ./scripts/start
 ```
-
-### Routes
-
-- `/implicit-flow`
-- `/auth-flow`
-- `/manual-auth`
 
 ## Test structure
 

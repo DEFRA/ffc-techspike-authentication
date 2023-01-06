@@ -3,17 +3,16 @@ const { tokens } = require('../session/keys')
 const { stateIsValid } = require('./verification/state')
 const { nonceIsValid } = require('./verification/nonce')
 const parseRole = require('./lib/parse-role')
-const { buildRefreshFormData, buildAuthFormData } = require('./token/parameters')
 const { retrieveToken, validateJwt, expiryToISODate, decodeJwt } = require('./token')
 
 const setCookieAuth = (request, accessToken) => {
   const cookieAuth = request.cookieAuth
   const parseAccessToken = decodeJwt(accessToken)
 
-  const roles = parseRole(parseAccessToken.roles)
+  const { roleNames } = parseRole(parseAccessToken.roles)
 
   cookieAuth.set({
-    scope: roles.roleNames,
+    scope: roleNames,
     account: { email: parseAccessToken.email, name: `${parseAccessToken.firstName} ${parseAccessToken.lastName}` }
   })
 }
@@ -59,9 +58,7 @@ const authenticate = async (request, refresh = false) => {
       return false
     }
 
-    const data = refresh ? buildRefreshFormData(request) : buildAuthFormData(request)
-    const response = await retrieveToken(request, data)
-
+    const response = await retrieveToken(request, refresh)
     return setAuthTokens(request, response)
   } else {
     console.log('Error returned from authentication request: ', request.query.error_description)

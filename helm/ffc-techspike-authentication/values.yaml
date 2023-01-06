@@ -26,6 +26,16 @@ container:
   limitMemory: 100Mi
   limitCpu: 100m
   port: 3000
+  defraIdClientId:
+  defraIdClientSecret:
+  defraIdKnownAuthorities:
+  defraIdScope:
+  defraIdRedirectUrl:
+  defraIdSignoutUrl:
+  defraIdSignoutRedirectUrl:
+  defraIdValidateAuthority:
+  defraIdTenantName:
+  defraIdServiceId:
 
 livenessProbe:
   path: /healthz

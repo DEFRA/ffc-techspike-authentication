@@ -1,0 +1,6 @@
+
+{{- if .Values.aadPodIdentity }}
+{{- include "ffc-helm-library.azure-identity" (list . "ffc-techspike-authentication.azure-identity") -}}
+{{- end }}
+{{- define "ffc-techspike-authentication.azure-identity" -}}
+{{- end -}}

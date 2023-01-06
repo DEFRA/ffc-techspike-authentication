@@ -8,9 +8,9 @@
     <h1 class="govuk-heading-l">Defra Id Integration Test Rig</h1>
     <p class="govuk-body">This is a prototype of a service that will allow users to integrate their Defra Id with other services.</p>
     <p class="govuk-body">This prototype is for testing purposes only and is not a live service. It is intended as a guide only.</p>
-    <ul class="govuk-list">
-      <li>
-        <a class="govuk-link" href="/signin">Sign in</a>
-      </li>
-    </ul>
+    {{ govukButton({
+      text: "Sign in",
+      href: "/signin",
+      isStartButton: true
+    }) }}
 {% endblock %}

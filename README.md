@@ -35,6 +35,7 @@ overridden by build and release pipelines.
 |DEFRAID_SCOPE| openid `{client_id}` offline-access
 |DEFRAID_SIGNOUT_REDIRECT_URL| A URL to redirect the user after a successful sign-out. This needs to be supplied to DEFRA Customer Identity.
 |DEFRAID_SIGNOUT_URL| The end_session_endpoint found within the OpenID connect configuration document
+|USE_HTTPS|To use DEFRA ID the local host needs to be https. Set envar as true for local development.
 
 ## Generate a self-signed certificate to run the  application on https
 

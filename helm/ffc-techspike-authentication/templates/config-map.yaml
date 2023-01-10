@@ -11,4 +11,13 @@ data:
   DEFRAID_VALIDATE_AUTHORITY: {{ quote .Values.container.defraIdValidateAuthority }}
   DEFRAID_TENANT_NAME: {{ quote .Values.container.defraIdTenantName }}
   COOKIE_PASSWORD: {{ .Values.container.cookiePassword | quote }}
+  {{- if .Values.container.redisHostname }}
+  REDIS_HOSTNAME: {{ quote .Values.container.redisHostname }}
+  {{- end }}
+  {{- if .Values.pr }}
+  REDIS_PARTITION: {{ .Values.container.redisPartition }}-{{ .Values.pr }}
+  {{ else }}
+  REDIS_PARTITION: {{ quote .Values.container.redisPartition }}
+  {{- end }}
+  REDIS_PORT: {{ quote .Values.container.redisPort }}
 {{- end -}}

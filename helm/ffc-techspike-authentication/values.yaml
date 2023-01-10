@@ -49,6 +49,10 @@ container:
   defraIdValidateAuthority:
   defraIdTenantName:
   defraIdServiceId:
+  redisHostname: redis-hostname.default
+  redisPartition: ffc-techspike-authentication
+  redisPassword: redis
+  redisPort: 6379
 
 service:
   port: 80

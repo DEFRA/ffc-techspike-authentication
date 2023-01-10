@@ -25,4 +25,5 @@ services:
       DEFRAID_VALIDATE_AUTHORITY:  true
       DEFRAID_TENANT_NAME: test_tenant_name
       DEFRAID_SERVICE_ID: test_service_id
+      USE_HTTPS: false
 

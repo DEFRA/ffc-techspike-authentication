@@ -25,7 +25,6 @@ async function createServer () {
         options: cacheConfig
       }
     }],
-    listener,
     port: config.port,
     debug: { request: 'error' },
     routes: {
@@ -39,6 +38,11 @@ async function createServer () {
       stripTrailingSlash: true
     }
   }
+  console.log('config.useHttps', config.useHttps)
+  if (config.useHttps) {
+    serverOptions.listener = listener
+  }
+
   const server = Hapi.server(serverOptions)
 
   await server.register(require('./plugins/auth'))

@@ -26,7 +26,8 @@ const schema = Joi.object({
   ),
   isDev: Joi.boolean().default(false),
   port: Joi.number().default(3000),
-  useRedis: Joi.boolean().default(false)
+  useRedis: Joi.boolean().default(false),
+  useHttps: Joi.boolean().default(false).allow('', null)
 })
 
 const config = {
@@ -49,7 +50,8 @@ const config = {
   env: process.env.NODE_ENV,
   isDev: process.env.NODE_ENV === 'development',
   port: process.env.PORT,
-  useRedis: process.env.NODE_ENV !== 'test'
+  useRedis: process.env.NODE_ENV !== 'test',
+  useHttps: process.env.USE_HTTPS > 0 ? process.env.USE_HTTPS : false
 }
 
 const result = schema.validate(config, {

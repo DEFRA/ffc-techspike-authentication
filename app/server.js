@@ -4,18 +4,6 @@ const catbox = config.useRedis
   ? require('@hapi/catbox-redis')
   : require('@hapi/catbox-memory')
 const cacheConfig = config.useRedis ? config.cache.options : {}
-const fs = require('fs')
-const Path = require('path')
-const Http2 = require('http2')
-
-const readContentsFromFile = filePath => fs.readFileSync(Path.join(__dirname, filePath))
-
-const serverOptions = {
-  key: readContentsFromFile('localhost-privkey.pem'),
-  cert: readContentsFromFile('localhost-cert.pem')
-}
-
-const listener = Http2.createSecureServer(serverOptions)
 
 async function createServer () {
   const serverOptions = {
@@ -40,6 +28,18 @@ async function createServer () {
   }
   console.log('config.useHttps', config.useHttps)
   if (config.useHttps) {
+    const fs = require('fs')
+    const Path = require('path')
+    const Http2 = require('http2')
+
+    const readContentsFromFile = filePath => fs.readFileSync(Path.join(__dirname, filePath))
+
+    const serverOptions = {
+      key: readContentsFromFile('localhost-privkey.pem'),
+      cert: readContentsFromFile('localhost-cert.pem')
+    }
+
+    const listener = Http2.createSecureServer(serverOptions)
     serverOptions.listener = listener
   }
 

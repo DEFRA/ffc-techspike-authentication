@@ -4,11 +4,11 @@ data:
   NODE_ENV: {{ quote .Values.environment }}
   PORT: {{ quote .Values.container.port }}
   APPINSIGHTS_CLOUDROLE: {{ quote .Values.name }}
-  DEFRAID_KNOWN_AUTHORITIES: {{ quote .Values.defraIdKnownAuthorities }}
-  DEFRAID_SCOPE: {{ quote .Values.defraIdScope }}
-  DEFRAID_REDIRECT_URL: {{ quote .Values.defraIdRedirectUrl }}
-  DEFRAID_SIGNOUT_URL: {{ quote .Values.defraIdSignoutUrl }}
-  DEFRAID_SIGNOUT_REDIRECT_URL: {{ quote .Values.defraIdSignoutRedirectUrl }}
-  DEFRAID_VALIDATE_AUTHORITY: {{ quote .Values.defraIdValidateAuthority }}
-  DEFRAID_TENANT_NAME: {{ quote .Values.defraIdTenantName }}
+  DEFRAID_KNOWN_AUTHORITIES: {{ quote .Values.container.defraIdKnownAuthorities }}
+  DEFRAID_SCOPE: {{ quote .Values.container.defraIdScope }}
+  DEFRAID_REDIRECT_URL: {{ quote .Values.container.defraIdRedirectUrl }}
+  DEFRAID_SIGNOUT_URL: {{ quote .Values.container.defraIdSignoutUrl }}
+  DEFRAID_SIGNOUT_REDIRECT_URL: {{ quote .Values.container.defraIdSignoutRedirectUrl }}
+  DEFRAID_VALIDATE_AUTHORITY: {{ quote .Values.container.defraIdValidateAuthority }}
+  DEFRAID_TENANT_NAME: {{ quote .Values.container.defraIdTenantName }}
 {{- end -}}

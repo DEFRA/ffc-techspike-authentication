@@ -26,7 +26,7 @@ async function createServer () {
       stripTrailingSlash: true
     }
   }
-  console.log('config.useHttps', config.useHttps)
+
   if (config.useHttps) {
     const fs = require('fs')
     const Path = require('path')

@@ -10,4 +10,5 @@ data:
   DEFRAID_SIGNOUT_REDIRECT_URL: {{ quote .Values.container.defraIdSignoutRedirectUrl }}
   DEFRAID_VALIDATE_AUTHORITY: {{ quote .Values.container.defraIdValidateAuthority }}
   DEFRAID_TENANT_NAME: {{ quote .Values.container.defraIdTenantName }}
+  COOKIE_PASSWORD: {{ .Values.container.cookiePassword | quote }}
 {{- end -}}

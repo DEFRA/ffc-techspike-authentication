@@ -29,7 +29,6 @@ container:
   defraIdClientId:
   defraIdClientSecret:
   defraIdKnownAuthorities:
-  defraIdScope:
   defraIdRedirectUrl:
   defraIdSignoutUrl:
   defraIdSignoutRedirectUrl:

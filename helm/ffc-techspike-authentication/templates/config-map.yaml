@@ -5,7 +5,6 @@ data:
   PORT: {{ quote .Values.container.port }}
   APPINSIGHTS_CLOUDROLE: {{ quote .Values.name }}
   DEFRAID_KNOWN_AUTHORITIES: {{ quote .Values.container.defraIdKnownAuthorities }}
-  DEFRAID_SCOPE: {{ quote .Values.container.defraIdScope }}
   DEFRAID_REDIRECT_URL: {{ quote .Values.container.defraIdRedirectUrl }}
   DEFRAID_SIGNOUT_URL: {{ quote .Values.container.defraIdSignoutUrl }}
   DEFRAID_SIGNOUT_REDIRECT_URL: {{ quote .Values.container.defraIdSignoutRedirectUrl }}

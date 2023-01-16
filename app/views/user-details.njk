@@ -8,6 +8,11 @@
     <h1 class="govuk-heading-l">Name: {{token.firstName}} {{token.lastName}}</h1>
     <p class="govuk-body">Email: {{token.email}}</p>
     <p class="govuk-body">TokenExpiry: {{tokenExpiry}}</p>
+    <p class="govuk-body">ServiceId: {{token.serviceId}}</p>
+    <p class="govuk-body">correlationId: {{token.correlationId}}</p>
+    <p class="govuk-body">currentRelationshipId: {{token.currentRelationshipId}}</p>
+    <p class="govuk-body">sessionId: {{token.sessionId}}</p>
+    <p class="govuk-body">contactId: {{token.contactId}}</p>
     <p class="govuk-body">AccessToken: {{accessToken}}</p>
     <p class="govuk-body">IdToken: {{idToken}}</p>
 {% endblock %}

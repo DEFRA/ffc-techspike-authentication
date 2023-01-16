@@ -13,6 +13,7 @@ module.exports = {
       const accessToken = session.getToken(request, tokens.accessToken)
       const idToken = session.getToken(request, tokens.idToken)
       const tokenExpiry = session.getToken(request, tokens.tokenExpiry)
+      console.log('token', token)
       // const ch = await get(request)
       return h.view('user-details', { token, tokenExpiry, accessToken, idToken })
     }

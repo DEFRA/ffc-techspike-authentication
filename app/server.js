@@ -27,7 +27,7 @@ async function createServer () {
     }
   }
 
-  if (config.useHttps) {
+  if (config.useHttps === true) {
     console.log('Using HTTPS')
     const fs = require('fs')
     const Path = require('path')

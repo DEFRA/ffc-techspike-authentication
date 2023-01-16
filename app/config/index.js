@@ -51,7 +51,7 @@ const config = {
   isDev: process.env.NODE_ENV === 'development',
   port: process.env.PORT,
   useRedis: process.env.NODE_ENV !== 'test',
-  useHttps: process.env.USE_HTTPS > 0 ? process.env.USE_HTTPS : true
+  useHttps: process.env.USE_HTTPS
 }
 
 const result = schema.validate(config, {

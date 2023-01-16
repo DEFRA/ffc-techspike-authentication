@@ -10,9 +10,11 @@ module.exports = {
     auth: { scope: [ownerSoleTrader, keyContact] },
     handler: async (request, h) => {
       const token = session.getToken(request, tokens.idToken, true)
+      const accessToken = session.getToken(request, tokens.accessToken)
+      const idToken = session.getToken(request, tokens.idToken)
       const tokenExpiry = session.getToken(request, tokens.tokenExpiry)
       // const ch = await get(request)
-      return h.view('user-details', { token, tokenExpiry })
+      return h.view('user-details', { token, tokenExpiry, accessToken, idToken })
     }
   }
 }

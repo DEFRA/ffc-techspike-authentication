@@ -1,7 +1,7 @@
 const session = require('../session')
 const { tokens } = require('../session/keys')
 const { ownerSoleTrader, keyContact } = require('../auth/constants/roles')
-const { get } = require('../api/base')
+// const { get } = require('../api/base')
 
 module.exports = {
   method: 'GET',

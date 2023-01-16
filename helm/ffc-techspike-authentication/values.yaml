@@ -53,6 +53,7 @@ container:
   redisPartition: ffc-techspike-authentication
   redisPassword: redis
   redisPort: 6379
+  useHttps: false
 
 service:
   port: 80

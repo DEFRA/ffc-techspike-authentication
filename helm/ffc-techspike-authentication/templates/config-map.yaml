@@ -20,4 +20,5 @@ data:
   REDIS_PARTITION: {{ quote .Values.container.redisPartition }}
   {{- end }}
   REDIS_PORT: {{ quote .Values.container.redisPort }}
+  USE_HTTPS: {{ quote .Values.container.useHttps }}
 {{- end -}}

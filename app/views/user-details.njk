@@ -13,6 +13,18 @@
     <p class="govuk-body">currentRelationshipId: {{token.currentRelationshipId}}</p>
     <p class="govuk-body">sessionId: {{token.sessionId}}</p>
     <p class="govuk-body">contactId: {{token.contactId}}</p>
+    <p class="govuk-body">
+      Relationships:
+      {% for data in token.relationships %}
+        {{ data }}
+      {% endfor %}
+    </p>
+    <p class="govuk-body">
+      Relationships:
+      {% for data in token.roles %}
+        {{ data }}
+      {% endfor %}
+    </p>
     <p class="govuk-body">AccessToken: {{accessToken}}</p>
     <p class="govuk-body">IdToken: {{idToken}}</p>
 {% endblock %}

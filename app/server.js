@@ -28,18 +28,18 @@ async function createServer () {
   }
 
   if (config.useHttps) {
+    console.log('Using HTTPS')
     const fs = require('fs')
     const Path = require('path')
     const Http2 = require('http2')
 
     const readContentsFromFile = filePath => fs.readFileSync(Path.join(__dirname, filePath))
-
-    const serverOptions = {
+    const serverCertOptions = {
       key: readContentsFromFile('localhost-privkey.pem'),
       cert: readContentsFromFile('localhost-cert.pem')
     }
 
-    const listener = Http2.createSecureServer(serverOptions)
+    const listener = Http2.createSecureServer(serverCertOptions)
     serverOptions.listener = listener
   }
 

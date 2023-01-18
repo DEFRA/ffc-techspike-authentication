@@ -21,4 +21,5 @@ data:
   {{- end }}
   REDIS_PORT: {{ quote .Values.container.redisPort }}
   USE_HTTPS: {{ quote .Values.container.useHttps }}
+  PROXY_URL: {{ quote .Values.container.proxyUrl }}
 {{- end -}}

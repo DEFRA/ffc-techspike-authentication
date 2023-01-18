@@ -27,7 +27,8 @@ const schema = Joi.object({
   isDev: Joi.boolean().default(false),
   port: Joi.number().default(3000),
   useRedis: Joi.boolean().default(false),
-  useHttps: Joi.boolean().default(false).allow('', null)
+  useHttps: Joi.boolean().default(false).allow('', null),
+  proxyUrl: Joi.string().default('').allow('', null)
 })
 
 const config = {
@@ -51,7 +52,8 @@ const config = {
   isDev: process.env.NODE_ENV === 'development',
   port: process.env.PORT,
   useRedis: process.env.NODE_ENV !== 'test',
-  useHttps: process.env.USE_HTTPS
+  useHttps: process.env.USE_HTTPS,
+  proxyUrl: process.env.PROXY_URL ? process.env.PROXY_URL : 'https://ffc-rpa-api-gateway.ffc.snd.azure.defra.cloud'
 }
 
 const result = schema.validate(config, {

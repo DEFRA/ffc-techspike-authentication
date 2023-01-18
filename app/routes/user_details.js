@@ -1,7 +1,7 @@
 const session = require('../session')
 const { tokens } = require('../session/keys')
 const { ownerSoleTrader, keyContact } = require('../auth/constants/roles')
-// const { get } = require('../api/base')
+const { get } = require('../api/base')
 
 module.exports = {
   method: 'GET',
@@ -13,9 +13,8 @@ module.exports = {
       const accessToken = session.getToken(request, tokens.accessToken)
       const idToken = session.getToken(request, tokens.idToken)
       const tokenExpiry = session.getToken(request, tokens.tokenExpiry)
-      console.log('token', token)
-      // const ch = await get(request)
-      return h.view('user-details', { token, tokenExpiry, accessToken, idToken })
+      const personSummary = await get(request)
+      return h.view('user-details', { token, tokenExpiry, accessToken, idToken, personSummary })
     }
   }
 }

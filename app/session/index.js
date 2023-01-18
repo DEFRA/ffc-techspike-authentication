@@ -2,7 +2,8 @@ const decodeJwt = require('../auth/token/jwt/decode-jwt')
 
 const entries = {
   pkcecodes: 'pkcecodes',
-  tokens: 'tokens'
+  tokens: 'tokens',
+  person: 'person'
 }
 
 const set = (request, entryKey, key, value) => {
@@ -18,6 +19,7 @@ const get = (request, entryKey, key) => {
 const clear = (request) => {
   request.yar.clear(entries.pkcecodes)
   request.yar.clear(entries.tokens)
+  request.yar.clear(entries.person)
 }
 
 const setToken = (request, key, value) => {
@@ -40,10 +42,20 @@ const getPkcecodes = (request, key) => {
   return get(request, entries.pkcecodes, key)
 }
 
+const setPerson = (request, key, value) => {
+  set(request, entries.person, key, value)
+}
+
+const getPerson = (request, key) => {
+  return get(request, entries.person, key)
+}
+
 module.exports = {
   getPkcecodes,
   setPkcecodes,
   getToken,
   setToken,
+  getPerson,
+  setPerson,
   clear
 }

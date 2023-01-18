@@ -27,4 +27,13 @@
     </p>
     <p class="govuk-body">AccessToken: {{accessToken}}</p>
     <p class="govuk-body">IdToken: {{idToken}}</p>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <h1 class="govuk-heading-l">Person Summary</h1>
+    <p class="govuk-body">Id: {{personSummary.id}}</p>
+    <p class="govuk-body">CRN: {{personSummary.customerReferenceNumber}}</p>
+    <p class="govuk-body">Name: {{personSummary.firstName}} {{personSummary.lastName}}</p>
+    <p class="govuk-body">Address: {{personSummary.address.city}}, {{personSummary.address.postalCode}}</p>
+  </div>
+</div>
 {% endblock %}

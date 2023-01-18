@@ -1,5 +1,5 @@
 const session = require('../session')
-const { tokens } = require('../session/keys')
+const { tokens, person } = require('../session/keys')
 const { nonceIsValid, stateIsValid } = require('./verification')
 const parseRole = require('./lib/parse-role')
 const { retrieveToken, validateJwt, expiryToISODate, decodeJwt } = require('./token')
@@ -9,6 +9,7 @@ const setCookieAuth = (request, accessToken) => {
   const parseAccessToken = decodeJwt(accessToken)
 
   const { roleNames } = parseRole(parseAccessToken.roles)
+  session.setPerson(request, person.crn, parseAccessToken.contactId)
 
   cookieAuth.set({
     scope: roleNames,

@@ -13,6 +13,7 @@ const getAuthenticationUrl = (request, pkce = true) => {
   authUrl.searchParams.append('prompt', 'login')
   authUrl.searchParams.append('serviceId', config.serviceId)
   authUrl.searchParams.append('state', generateState(request))
+  authUrl.searchParams.append('forceReselection', true)
 
   if (pkce) {
     const challenge = createCryptoProvider(request)

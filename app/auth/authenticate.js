@@ -10,6 +10,7 @@ const setCookieAuth = (request, accessToken) => {
 
   const { roleNames } = parseRole(parseAccessToken.roles)
   session.setPerson(request, person.crn, parseAccessToken.contactId)
+  session.setPerson(request, person.organisationId, parseAccessToken.currentRelationshipId)
 
   cookieAuth.set({
     scope: roleNames,

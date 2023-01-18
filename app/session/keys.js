@@ -12,6 +12,7 @@ module.exports = {
   },
   person: {
     id: 'id',
-    crn: 'crn'
+    crn: 'crn',
+    organisationId: 'organisationId'
   }
 }

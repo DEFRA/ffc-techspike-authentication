@@ -20,7 +20,7 @@
       {% endfor %}
     </p>
     <p class="govuk-body">
-      Relationships:
+      roles:
       {% for data in token.roles %}
         {{ data }}
       {% endfor %}
@@ -33,7 +33,16 @@
     <p class="govuk-body">Id: {{personSummary.id}}</p>
     <p class="govuk-body">CRN: {{personSummary.customerReferenceNumber}}</p>
     <p class="govuk-body">Name: {{personSummary.firstName}} {{personSummary.lastName}}</p>
-    <p class="govuk-body">Address: {{personSummary.address.city}}, {{personSummary.address.postalCode}}</p>
+    <h1 class="govuk-heading-l">Organisation</h1>
+    <p class="govuk-body">Authorised: {{organisationSummary.organisationPermission}}</p>
+    <p class="govuk-body">Name: {{organisationSummary.organisation.name}}</p>
+    <p class="govuk-body">Sbi: {{organisationSummary.organisation.sbi}}</p>
+    <p class="govuk-body">
+      CPH Numbers:
+      {% for data in organisationSummary.cphNumbers %}
+        {{ data.cphNumber }}
+      {% endfor %}
+    </p>
   </div>
 </div>
 {% endblock %}

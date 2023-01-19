@@ -10,7 +10,7 @@ const getAuthenticationUrl = (request, pkce = true) => {
   authUrl.searchParams.append('redirect_uri', config.defraId.redirectUrl)
   authUrl.searchParams.append('scope', config.defraId.scope)
   authUrl.searchParams.append('response_type', 'code')
-  authUrl.searchParams.append('prompt', 'login')
+  // authUrl.searchParams.append('prompt', 'login')
   authUrl.searchParams.append('serviceId', config.serviceId)
   authUrl.searchParams.append('state', generateState(request))
   authUrl.searchParams.append('forceReselection', true)

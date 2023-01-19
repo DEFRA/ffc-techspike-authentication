@@ -8,9 +8,13 @@ const getOrganisationAuthorisation = async (request) => {
   return response?.data
 }
 
-const organisationHasPermission = async (request, permission) => {
+const permissionMatcher = (permissions, permissionToMatch) => {
+  return permissions.every(value => permissionToMatch.includes(value))
+}
+
+const organisationHasPermission = async (request, permissions) => {
   const organisationAuthorisation = await getOrganisationAuthorisation(request)
-  const hasPermission = organisationAuthorisation.personPrivileges.some(privilege => privilege.privilegeNames.includes(permission))
+  const hasPermission = organisationAuthorisation.personPrivileges.some(privilege => permissionMatcher(privilege.privilegeNames, permissions))
   return hasPermission
 }
 
@@ -29,7 +33,7 @@ const getOrganisation = async (request) => {
 const organisationIsEligible = async (request) => {
   let cphNumbers = []
   let organisation = {}
-  const organisationPermission = await organisationHasPermission(request, 'Submit - bps')
+  const organisationPermission = await organisationHasPermission(request, ['Submit - bps', 'Full permission - business'])
 
   if (organisationPermission) {
     cphNumbers = await getOrganisationCphNumbers(request)

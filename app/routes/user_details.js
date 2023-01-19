@@ -1,13 +1,13 @@
 const session = require('../session')
 const { tokens } = require('../session/keys')
-const { ownerSoleTrader, keyContact } = require('../auth/constants/roles')
+const { ownerSoleTrader, keyContact, agent } = require('../auth/constants/roles')
 const { getPersonSummary, organisationIsEligible } = require('../api')
 
 module.exports = {
   method: 'GET',
   path: '/user-details',
   options: {
-    auth: { scope: [ownerSoleTrader, keyContact] },
+    auth: { scope: [ownerSoleTrader, keyContact, agent] },
     handler: async (request, h) => {
       const token = session.getToken(request, tokens.idToken, true)
       const accessToken = session.getToken(request, tokens.accessToken)

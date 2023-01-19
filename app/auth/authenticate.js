@@ -40,7 +40,10 @@ const setAuthTokens = async (request, response) => {
 
       const refreshToken = response.data.refresh_token
       session.setToken(request, tokens.refreshToken, refreshToken)
+
       setCookieAuth(request, accessToken)
+
+      console.log('Authentication successful.')
 
       return true
     }

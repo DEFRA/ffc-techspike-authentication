@@ -8,7 +8,6 @@ module.exports = {
     handler: async (request, h) => {
       try {
         const authenticate = await auth.authenticate(request)
-
         if (!authenticate) {
           return h.redirect('/')
         }

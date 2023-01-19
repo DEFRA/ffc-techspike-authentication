@@ -1,6 +1,7 @@
 const roles = {
   ownerSoleTrader: 'Owner or Sole Trader',
-  keyContact: 'Key Contact'
+  keyContact: 'Key Contact',
+  agent: 'Agent'
 }
 
 module.exports = roles

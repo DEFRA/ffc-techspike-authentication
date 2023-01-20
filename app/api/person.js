@@ -8,4 +8,13 @@ const getPersonSummary = async (request) => {
   return response._data
 }
 
-module.exports = getPersonSummary
+const getPersonOrgSummary = async (request, personId) => {
+  const crn = session.getPerson(request, person.crn)
+  const response = await get(`/extapi/organisation/person/${personId}/summary?order=asc&search=&sort-by=name&pagesize=20&page=1`, request, { crn })
+  return response._data
+}
+
+module.exports = {
+  getPersonSummary,
+  getPersonOrgSummary
+}

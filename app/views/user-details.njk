@@ -25,14 +25,24 @@
         {{ data }}
       {% endfor %}
     </p>
-    <p class="govuk-body">AccessToken: {{accessToken}}</p>
-    <p class="govuk-body">IdToken: {{idToken}}</p>
   </div>
   <div class="govuk-grid-column-one-third">
     <h1 class="govuk-heading-l">Person Summary</h1>
     <p class="govuk-body">Id: {{personSummary.id}}</p>
     <p class="govuk-body">CRN: {{personSummary.customerReferenceNumber}}</p>
     <p class="govuk-body">Name: {{personSummary.firstName}} {{personSummary.lastName}}</p>
+    <p class="govuk-body">
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="sort">
+          Organisations
+        </label>
+        <select class="govuk-select" id="sort" name="sort">
+          {% for data in personOrgSummary %}
+            <option value="{{data.name}}">{{data.name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </p>
     <h1 class="govuk-heading-l">Organisation</h1>
     <p class="govuk-body">Authorised: {{organisationSummary.organisationPermission}}</p>
     <p class="govuk-body">Name: {{organisationSummary.organisation.name}}</p>
@@ -43,6 +53,10 @@
         {{ data.cphNumber }}
       {% endfor %}
     </p>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <p class="govuk-body" word-wrap: break-word>AccessToken: {{accessToken}}</p>
+    <p class="govuk-body">IdToken: {{idToken}}</p>
   </div>
 </div>
 {% endblock %}

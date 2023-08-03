@@ -32,7 +32,7 @@
     "axios": "^1.2.1",
     "bell": "^10.0.0",
     "form-data": "^4.0.0",
-    "govuk-frontend": "4.0.1",
+    "govuk-frontend": "4.7.0",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "jwk-to-pem": "^2.0.5",
